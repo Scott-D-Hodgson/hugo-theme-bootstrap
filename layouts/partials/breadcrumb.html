@@ -3,7 +3,7 @@
     <li class="breadcrumb-item">
         <a href="/">Home</a>
     </li>
-    {{ template "breadcrumb" dict "currentPage" .Page "id" .UniqueID }}
+    {{ template "breadcrumb" dict "currentPage" .Page }}
     </ol>
 </nav>
 <div class="container-fluid">
@@ -13,7 +13,7 @@
     {{ if ne .currentPage.Parent .IsHome }}
     {{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
     {{ end }}
-    {{ if eq .id .currentPage.UniqueID }}
+    {{ if eq .id .idPage .currentPage }}
         <li class="breadcrumb-item active" aria-current="page">{{ .currentPage.Title }}</li>
     {{ else }}
         <li class="breadcrumb-item"><a href="{{ .currentPage.URL }}">{{ .currentPage.Title }}</a></li>
