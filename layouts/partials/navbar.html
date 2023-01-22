@@ -17,11 +17,6 @@
                         <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
                     </li>
                     {{ end }}
-                    {{ range .Pages.ByTitle }}
-                    <li>
-                        <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                    </li>
-                    {{ end }}
                 </ul>
             </li>
             {{ end }}
