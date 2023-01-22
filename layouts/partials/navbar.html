@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,18 +6,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            {{ range .Site.Sections }}
+            {{ range .Site.Sections.ByTitle }}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ .Title }}
                 </a>
                 <ul class="dropdown-menu" data-bs-popper="static" aria-labelledby="navbarDropdown">
-                    {{ range .Sections }}
+                    {{ range .Sections.ByTitle }}
                     <li>
                         <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
                     </li>
                     {{ end }}
-                    {{ range .Pages }}
+                    {{ range .Pages.ByTitle }}
                     <li>
                         <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
                     </li>
