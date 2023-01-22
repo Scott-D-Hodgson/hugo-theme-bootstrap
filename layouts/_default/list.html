@@ -35,8 +35,8 @@
             <li>{{ $key }}<sup>{{ len $items }}</sup>
                 <ul class="list-group list-group-flush">
                     {{- range $items -}}
-                    <li class="list-group-item">
-                        <a href="{{ .RelPermalink }}">{{ .Name }}</a>
+                    <li>
+                        <a href="{{ .RelPermalink }}"><small>{{ .Name }}</small></a>
                     </li>
                     {{- end -}}
                 </ul>
