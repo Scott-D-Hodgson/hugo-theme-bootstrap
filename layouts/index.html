@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ partial "bootstrap.html" . }}
+        {{ partial "fontawesome.html" . }}
+        <title>{{ .Title }}</title>
+    </head>
+    <body>
+        {{ partial "navbar.html" . }}
+        {{ .Content }}
+    </body>
+</html>
