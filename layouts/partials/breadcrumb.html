@@ -4,9 +4,9 @@
 {{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
 {{ end }}
 {{ if eq .id .idPage .currentPage }}
-    <li class="breadcrumb-item active" aria-current="page">{{ .currentPage.Title }}</li>
+    <li class="breadcrumb-item active" aria-current="page"><small>{{ .currentPage.Title }}</small></li>
 {{ else }}
-    <li class="breadcrumb-item"><a href="{{ .currentPage.URL }}">{{ .currentPage.Title }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ .currentPage.URL }}"><small>{{ .currentPage.Title }}</small></a></li>
 {{ end }}
 {{ end }}
 {{ end }}
@@ -14,7 +14,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="/">Home</a>
+            <small><a href="/">Home</a></small>
         </li>
         {{ template "breadcrumb" dict "currentPage" .Page }}
         </ol>
