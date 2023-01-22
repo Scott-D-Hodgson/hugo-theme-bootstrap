@@ -4,20 +4,24 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
             {{ range .Site.Sections }}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ .Title }}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul class="dropdown-menu" data-bs-popper="static" aria-labelledby="navbarDropdown">
                     {{ range .Sections }}
-                    <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <li>
+                        <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </li>
                     {{ end }}
                     {{ range .Pages }}
-                    <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <li>
+                        <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </li>
                     {{ end }}
-                </div>
+                </ul>
             </li>
             {{ end }}
         </ul>
