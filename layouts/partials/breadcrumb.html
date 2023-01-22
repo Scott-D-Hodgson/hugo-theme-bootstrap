@@ -3,7 +3,7 @@
 {{ if ne .currentPage.Parent .IsHome }}
 {{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
 {{ end }}
-{{ if eq .currentPage }}
+{{ if eq .id .idPage .currentPage }}
     <li class="breadcrumb-item active" aria-current="page"><small>{{ .currentPage.Title }}</small></li>
 {{ else }}
     <li class="breadcrumb-item"><a href="{{ .currentPage.URL }}"><small>{{ .currentPage.Title }}</small></a></li>
