@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         {{ range .Ancestors.Reverse }}
-            {{ if eq .idPage .currentPage }}
+            {{ if eq .id .currentPage }}
                 <li class="breadcrumb-item active" aria-current="page"><small>{{ .Title }}</small></li>
             {{ else }}
                 <li class="breadcrumb-item"><a href="{{ .RelPermalink }}"><small>{{ .Title }}</small></a></li>
