@@ -1,22 +1,13 @@
-{{ define "breadcrumb" }}
-{{ if .currentPage.Parent }}
-{{ if ne .currentPage.Parent .IsHome }}
-{{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
-{{ end }}
-{{ if eq .id .idPage .currentPage }}
-    <li class="breadcrumb-item active" aria-current="page"><small>{{ .currentPage.Title }}</small></li>
-{{ else }}
-    <li class="breadcrumb-item"><a href="{{ .currentPage.URL }}"><small>{{ .currentPage.Title }}</small></a></li>
-{{ end }}
-{{ end }}
-{{ end }}
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <small><a href="/">Home</a></small>
-        </li>
-        {{ template "breadcrumb" dict "currentPage" .Page }}
+        {{ range .Ancestors.Reverse }}
+            {{ if eq .idPage .currentPage }}
+                <li class="breadcrumb-item active" aria-current="page"><small>{{ .Title }}</small></li>
+            {{ else }}
+                <li class="breadcrumb-item"><a href="{{ .RelPermalink }}"><small>{{ .Title }}</small></a></li>
+            {{ end }}
+        {{ end }}
         </ol>
     </nav>
 </div>
