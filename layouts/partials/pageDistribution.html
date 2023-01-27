@@ -29,6 +29,7 @@
                     {{- if (eq $first 1) -}}
                         '{{ $key }}'
                     {{ else }}
+                        {{- $first := 0 -}}
                         , '{{ $key }}'
                         {{ end }}
                 {{ end }}
@@ -40,6 +41,7 @@
                     {{ range $key, $items := $pages_by_letters }}
                     {{- if (eq $first 1) -}}
                         {{ $items }}
+                        {{- $first := 0 -}}
                     {{ else }}
                         , {{ $items }}
                         {{ end }}            
