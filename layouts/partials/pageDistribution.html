@@ -1,0 +1,59 @@
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
+{{- $pages := .Pages.ByTitle -}}
+{{- $pages_by_letters := dict -}}
+{{ range $pages }}
+{{- $page := . -}}
+{{- $first_letter := upper ( substr $page.Name 0 1 ) -}}
+{{- if not (in $letters $first_letter) }}
+{{ $first_letter = "#" }}
+{{ end }}
+{{- $new_list := slice -}}
+{{ with index $pages_by_letters $first_letter }}
+{{- $new_list = . | append $page -}}
+{{ else }}
+{{- $new_list = slice $page -}}
+{{ end }}
+{{- $pages_by_letters = merge $pages_by_letters (dict $first_letter $new_list) -}}
+{{ end }}
+
+<canvas id="PageDistributionChart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('PageDistributionChart');  
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [
+                {{- $first := 1 -}}
+                {{ range $key, $items := $pages_by_letters }}
+                    {{- if (eq $first 1) -}}
+                        '{{ $key }}'
+                    {{ else }}
+                        , '{{ $key }}'
+                        {{ end }}
+                {{ end }}
+            ],
+            datasets: [{
+                label: 'Distribution of Pages',
+                data: [
+                    {{- $first := 1 -}}
+                    {{ range $key, $items := $pages_by_letters }}
+                    {{- if (eq $first 1) -}}
+                        {{ $items }}
+                    {{ else }}
+                        , {{ $items }}
+                        {{ end }}            
+                    {{ end }}            
+                ],
+                borderWidth: 1
+            }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>

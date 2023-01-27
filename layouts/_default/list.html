@@ -30,6 +30,9 @@
         {{ .Content }}
     </div>
     <div class="container-fluid">
+        {{ partial "pageDistribution.html" . }}
+    </div>
+    <div class="container-fluid">
         <ul>
             {{ range $key, $items := $pages_by_letters }}
             <li>{{ $key }}<sup>{{ len $items }}</sup>
