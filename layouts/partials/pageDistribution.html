@@ -28,10 +28,10 @@
                 {{ range $key, $items := $pages_by_letters }}
                     {{- if (eq $first 1) -}}
                         '{{ $key }}'
-                    {{ else }}
                         {{- $first := 0 -}}
+                    {{ else }}
                         , '{{ $key }}'
-                        {{ end }}
+                    {{ end }}
                 {{ end }}
             ],
             datasets: [{
@@ -39,11 +39,11 @@
                 data: [
                     {{- $first := 1 -}}
                     {{ range $key, $items := $pages_by_letters }}
-                    {{- if (eq $first 1) -}}
-                        {{ $items }}
-                        {{- $first := 0 -}}
-                    {{ else }}
-                        , {{ $items }}
+                        {{- if (eq $first 1) -}}
+                            {{ $items }}
+                            {{- $first := 0 -}}
+                        {{ else }}
+                            , {{ $items }}
                         {{ end }}            
                     {{ end }}            
                 ],
