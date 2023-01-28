@@ -24,28 +24,18 @@
         type: 'pie',
         data: {
             labels: [
-                {{- $first := 1 -}}
+                {{ $keys := slice }}
+                {{ $counts := slice }}
                 {{ range $key, $items := $pages_by_letters }}
-                    {{- if (eq $first 1) -}}
-                        '{{ $key }}'
-                        {{- $first := 0 -}}
-                    {{ else }}
-                        , '{{ $key }}'
-                    {{ end }}
+                    {{ $keys = append $keys $key }}
+                    {{ $counts = append $counts (len $items) }}
                 {{ end }}
+                {{ delimit $keys ", " }}
             ],
             datasets: [{
                 label: 'Distribution of Pages',
                 data: [
-                    {{- $first := 1 -}}
-                    {{ range $key, $items := $pages_by_letters }}
-                        {{- if (eq $first 1) -}}
-                            {{ $items }}
-                            {{- $first := 0 -}}
-                        {{ else }}
-                            , {{ $items }}
-                        {{ end }}            
-                    {{ end }}            
+                    {{ delimit $keys ", " }}
                 ],
                 borderWidth: 1
             }]
