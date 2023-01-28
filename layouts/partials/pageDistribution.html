@@ -27,15 +27,15 @@
                 {{ $keys := slice }}
                 {{ $counts := slice }}
                 {{ range $key, $items := $pages_by_letters }}
-                    {{ $keys = append $keys $key }}
-                    {{ $counts = append $counts (len $items) }}
+                    {{ $keys = $keys | append $key }}
+                    {{ $counts = $counts | append (len $items) }}
                 {{ end }}
                 {{ delimit $keys ", " }}
             ],
             datasets: [{
                 label: 'Distribution of Pages',
                 data: [
-                    {{ delimit $keys ", " }}
+                    {{ delimit $counts ", " }}
                 ],
                 borderWidth: 1
             }]
