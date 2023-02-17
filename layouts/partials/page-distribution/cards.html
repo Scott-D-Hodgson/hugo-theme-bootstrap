@@ -1,0 +1,31 @@
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
+{{- $pages := .Pages.ByTitle -}}
+{{- $pages_by_letters := dict -}}
+{{ range $pages }}
+{{- $page := . -}}
+{{- $first_letter := upper ( substr $page.Name 0 1 ) -}}
+{{- if not (in $letters $first_letter) }}
+{{ $first_letter = "#" }}
+{{ end }}
+{{- $new_list := slice -}}
+{{ with index $pages_by_letters $first_letter }}
+{{- $new_list = . | append $page -}}
+{{ else }}
+{{- $new_list = slice $page -}}
+{{ end }}
+{{- $pages_by_letters = merge $pages_by_letters (dict $first_letter $new_list) -}}
+{{ end }}
+
+<div class="row">
+    {{ range $key, $items := $pages_by_letters }}
+        {{- range $items -}}
+        <div class="card col-xs-12 col-md-4 col-xl-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ .Name }}</h5>
+                <p class="card-text">{{ .Summary }}</p>
+                <a href="{{ .RelPermalink }}" class="btn btn-default">Read more...</a>
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+</div>
