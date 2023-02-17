@@ -38,7 +38,7 @@
                         {{- $counter := 0 -}}
                         {{- range $key, $items := $pages_by_letters -}}
                             {{- $counter = add $counter 1 -}}
-                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end }} text-center pt-0 pb-0" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
+                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end }} text-center p-0" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
                         {{- end -}}
                     </div>
                 </div>
