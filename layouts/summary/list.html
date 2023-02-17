@@ -14,13 +14,11 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-4 col-lg-3">
-        {{- range .Pages -}}
-            {{- if (.isSection) -}}
-                <h5 class="card-title">{{ .Name }}</h5>
-                <p class="card-text">{{ .Summary }}</p>
-                <a href="{{ .RelPermalink }}" class="btn btn-default">Read more...</a>
-            {{ end }}
-        {{ end }} 
+        {{- range .Sections -}}
+            <h5 class="card-title">{{ .Name }}</h5>
+            <p class="card-text">{{ .Summary }}</p>
+            <a href="{{ .RelPermalink }}" class="btn btn-default">Read more...</a>
+        {{ end }}
     </div>
 </body>
 </html>
