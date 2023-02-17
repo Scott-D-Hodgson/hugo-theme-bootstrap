@@ -1,0 +1,23 @@
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
+{{- $pages := .Pages.ByTitle -}}
+{{- $pages_by_letters := dict -}}
+{{ range $pages }}
+{{- $page := . -}}
+{{- $first_letter := upper ( substr $page.Name 0 1 ) -}}
+{{- if not (in $letters $first_letter) }}
+{{ $first_letter = "#" }}
+{{ end }}
+{{- $new_list := slice -}}
+{{ with index $pages_by_letters $first_letter }}
+{{- $new_list = . | append $page -}}
+{{ else }}
+{{- $new_list = slice $page -}}
+{{ end }}
+{{- $pages_by_letters = merge $pages_by_letters (dict $first_letter $new_list) -}}
+{{ end }}
+
+<div class="btn-group" role="group" aria-label="Page Groups">
+    {{ range $key, $items := $pages_by_letters }}
+    <button type="button" class="btn btn-secondary">{{ $key }}</button>
+    {{ end }}
+</div>
