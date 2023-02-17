@@ -32,18 +32,18 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3 col-md-2 col-lg-1">
+            <div class="col-1">
                 <div class="sticky-top">
                     <div class="list-group" id="alpha-list" role="tablist">
                         {{- $counter := 0 -}}
                         {{- range $key, $items := $pages_by_letters -}}
                             {{- $counter = add $counter 1 -}}
-                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end -}}" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
+                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end -}} text-center pt-0 pb-0" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
                         {{- end -}}
                     </div>
                 </div>
             </div>
-            <div class="col-9 col-md-10 col-lg-11">
+            <div class="col-11">
                 <div class="tab-content" id="alpha-content">
                     {{- $counter := 0 -}}
                     {{- range $key, $items := $pages_by_letters -}}
