@@ -36,9 +36,10 @@
                 <div class="list-group" id="alpha-list" role="tablist">
                     {{- $counter := 0 -}}
                     {{- range $key, $items := $pages_by_letters -}}
-                    {{- range $items -}}
-                        {{- $counter = add $counter 1 -}}
-                        <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end -}}" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
+                        {{- range $items -}}
+                            {{- $counter = add $counter 1 -}}
+                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end -}}" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
+                        {{- end -}}
                     {{- end -}}
                 </div>
             </div>
@@ -46,9 +47,9 @@
                 <div class="tab-content" id="alpha-content">
                     {{- $counter := 0 -}}
                     {{- range $key, $items := $pages_by_letters -}}
-                    {{- $counter = add $counter 1 -}}
-                    <div class="tab-pane fade {{ if (eq $counter 1) -}}show active{{- end -}}" id="alpha-list-{{- $counter -}}" role="tabpanel" aria-labelledby="alpha-group-{{- $counter -}}">
-                        <ul>
+                        {{- $counter = add $counter 1 -}}
+                        <div class="tab-pane fade {{ if (eq $counter 1) -}}show active{{- end -}}" id="alpha-list-{{- $counter -}}" role="tabpanel" aria-labelledby="alpha-group-{{- $counter -}}">
+                            <ul>
                             {{- range $items -}}
                             <li>
                                 <a href="{{- .RelPermalink -}}" class="btn btn-default">{{- .Name -}}</a></li>
