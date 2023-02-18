@@ -1,9 +1,9 @@
 {{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
-{{- $pages := .pages.ByTitle -}}
+{{- $pages := .Pages.ByTitle -}}
 {{- $pages_by_letters := dict -}}
 {{- range $pages -}}
 {{- $page := . -}}
-{{- $first_letter := upper ( substr $pages.Name 0 1 ) -}}
+{{- $first_letter := upper ( substr $page.Name 0 1 ) -}}
 {{- if not (in $letters $first_letter) -}}
 {{- $first_letter = "#" -}}
 {{- end -}}
