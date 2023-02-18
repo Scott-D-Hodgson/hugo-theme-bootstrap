@@ -15,15 +15,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
+                {{- range .Sections -}}
                 <div class="card h-100">
                     <div class="card-body">
-                        {{- range .Sections -}}
-                            <h5 class="card-title">{{- .Name -}}</h5>
-                            <p class="card-text">{{- .Summary -}}</p>
-                            <a href="{{- .RelPermalink -}}" class="btn btn-default">Read more...</a>
-                        {{ end }}
+                        <h5 class="card-title">{{- .Name -}}</h5>
+                        <p class="card-text">{{- .Summary -}}</p>
+                        <a href="{{- .RelPermalink -}}" class="btn btn-default">Read more...</a>
                     </div>
                 </div>
+                {{- end -}}
             </div>
         </div>
     </div>
