@@ -49,19 +49,18 @@
                     {{- range $key, $items := $pages_by_letters -}}
                         {{- $counter = add $counter 1 -}}
                         <div class="tab-pane fade {{ if (eq $counter 1) -}}show active{{- end -}}" id="alpha-list-{{- $counter -}}" role="tabpanel" aria-labelledby="alpha-group-{{- $counter -}}">
-                            <div class="accordion" id="command-set-{{- $counter -}}">
+                            <div class="accordion" id="question-set-{{- $counter -}}">
                                 {{- $subcounter := 0 -}}
                                 {{- range $items -}}
                                     {{- $subcounter = add $subcounter 1 -}}
                                     <div class="accordion-item">
-                                        <h2 class="accordion-header" id="command-heading-{{- $counter -}}-{{- $subcounter -}}">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#command-{{- $counter -}}-{{- $subcounter -}}" aria-expanded="true" aria-controls="collapseOne">
+                                        <h2 class="accordion-header" id="question-heading-{{- $counter -}}-{{- $subcounter -}}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#question-{{- $counter -}}-{{- $subcounter -}}" aria-expanded="true" aria-controls="collapseOne">
                                             {{- .Name -}}
                                             </button>
                                         </h2>
-                                        <div id="command-{{- $counter -}}-{{- $subcounter -}}" class="accordion-collapse collapse" aria-labelledby="command-heading-{{- $counter -}}-{{- $subcounter -}}" data-bs-parent="#command-set-{{- $counter -}}">
+                                        <div id="question-{{- $counter -}}-{{- $subcounter -}}" class="accordion-collapse collapse" aria-labelledby="question-heading-{{- $counter -}}-{{- $subcounter -}}" data-bs-parent="#question-set-{{- $counter -}}">
                                             <div class="accordion-body">
-                                            <pre>{{- .Name -}}</pre>
                                             {{- .Content -}}
                                             </div>
                                         </div>
