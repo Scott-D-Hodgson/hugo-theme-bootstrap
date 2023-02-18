@@ -3,20 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ partial "bootstrap.html" . }}
+    {{- partial "bootstrap.html" . -}}
 </head>
 <body>
-    {{ partial "navbar.html" . }}
-    {{ partial "breadcrumb.html" . }}
+    {{- partial "navbar.html" . -}}
+    {{- partial "breadcrumb.html" . -}}
     <div class="container-fluid">
-        <h1>{{ .Title }}</h1>
-        {{ .Content }}
+        <h1>{{- .Title -}}</h1>
+        {{- .Content -}}
     </div>
     <div class="container-fluid">
-        {{ partial "page-distribution/button-group" . }}
+        <div class="row">
+            <div class="col-12">
+                {{- partial "page-distribution/button-group" . -}}
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
-        {{ partial "page-distribution/cards" . }}
+        <div class="row">
+            <div class="col-12">
+                {{- partial "alpha/page/cards" . -}}
+            </div>
+        </div>
     </div>
 </body>
 </html>
