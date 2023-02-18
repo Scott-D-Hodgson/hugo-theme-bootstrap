@@ -3,7 +3,7 @@
 {{- $sections_by_letters := dict -}}
 {{- range $sections -}}
 {{- $section := . -}}
-{{- $first_letter := upper ( substr $sections.Name 0 1 ) -}}
+{{- $first_letter := upper ( substr $section.Name 0 1 ) -}}
 {{- if not (in $letters $first_letter) -}}
 {{- $first_letter = "#" -}}
 {{- end -}}
