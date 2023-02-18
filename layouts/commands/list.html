@@ -1,0 +1,77 @@
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" -}}
+{{- $pages := .Pages.ByTitle -}}
+{{- $pages_by_letters := dict -}}
+{{- range $pages -}}
+{{- $page := . -}}
+{{- $first_letter := upper ( substr $page.Name 0 1 ) -}}
+{{- if not (in $letters $first_letter) -}}
+{{- $first_letter = "#" -}}
+{{- end -}}
+{{- $new_list := slice -}}
+{{- with index $pages_by_letters $first_letter -}}
+{{- $new_list = . | append $page -}}
+{{- else -}}
+{{- $new_list = slice $page -}}
+{{- end -}}
+{{- $pages_by_letters = merge $pages_by_letters (dict $first_letter $new_list) -}}
+{{- end -}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{- partial "bootstrap.html" . -}}
+</head>
+<body>
+    {{- partial "navbar.html" . -}}
+    {{- partial "breadcrumb.html" . -}}
+    <div class="container-fluid">
+        <h1>{{- .Title -}}</h1>
+        {{- .Content -}}
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 col-sm-1">
+                <div class="sticky-top">
+                    <div class="list-group mb-2" id="alpha-list" role="tablist">
+                        {{- $counter := 0 -}}
+                        {{- range $key, $items := $pages_by_letters -}}
+                            {{- $counter = add $counter 1 -}}
+                            <a class="list-group-item list-group-item-action {{ if (eq $counter 1) -}}active{{- end }} text-center p-0" id="alpha-group-{{- $counter -}}" data-bs-toggle="list" href="#alpha-list-{{- $counter -}}" role="tab">{{- $key -}}</a>
+                        {{- end -}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-sm-11">
+                <div class="tab-content" id="alpha-content">
+                    {{- $counter := 0 -}}
+                    {{- range $key, $items := $pages_by_letters -}}
+                        {{- $counter = add $counter 1 -}}
+                        <div class="tab-pane fade {{ if (eq $counter 1) -}}show active{{- end -}}" id="alpha-list-{{- $counter -}}" role="tabpanel" aria-labelledby="alpha-group-{{- $counter -}}">
+                            <div class="accordion" id="command-set-{{- $counter -}}">
+                                {{- $subcounter := 0 -}}
+                                {{- range $items -}}
+                                    {{- $subcounter = add $subcounter 1 -}}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="command-heading-{{- $counter -}}-{{- $subcounter -}}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#command-{{- $counter -}}-{{- $subcounter -}}" aria-expanded="true" aria-controls="collapseOne">
+                                            {{- .Name -}}
+                                            </button>
+                                        </h2>
+                                        <div id="command-{{- $counter -}}-{{- $subcounter -}}" class="accordion-collapse collapse {{ if (eq $subcounter 1) -}}show{{- end -}}" aria-labelledby="command-heading-{{- $counter -}}-{{- $subcounter -}}" data-bs-parent="#command-set-{{- $counter -}}">
+                                            <div class="accordion-body">
+                                            {{- .Content -}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{- end -}}
+                            </div>
+                        </div>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
