@@ -21,9 +21,7 @@
                         <h5 class="card-title">{{- .Name -}}</h5>
                         <div class="mb-2">
                             {{- range .Params.tags -}}
-                            <span class="badge text-bg-primary">
-                                <a href="{{- "/tags/" | relLangURL -}}{{- . | urlize -}}">{{- . -}}</a>
-                            </span>
+                            <span class="badge text-bg-secondary me-1">{{- . -}}</span>
                             {{- end -}}
                         </div>
                         <p class="card-text">{{- .Summary -}}</p>
