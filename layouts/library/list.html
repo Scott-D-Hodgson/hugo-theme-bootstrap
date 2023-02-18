@@ -14,8 +14,8 @@
     </div>
     <div class="container-fluid">
         <div class="row">
+            {{- range .Sections -}}
             <div class="col-12 col-md-4 col-lg-3">
-                {{- range .Sections -}}
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">{{- .Name -}}</h5>
@@ -23,8 +23,8 @@
                         <a href="{{- .RelPermalink -}}" class="btn btn-default">Read more...</a>
                     </div>
                 </div>
-                {{- end -}}
             </div>
+            {{- end -}}
         </div>
     </div>
 </body>
