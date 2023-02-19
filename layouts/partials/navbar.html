@@ -2,25 +2,31 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            {{ range .Site.Sections.ByTitle }}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ .Title }}
-                </a>
-                <ul class="dropdown-menu" data-bs-popper="static" aria-labelledby="navbarDropdown">
-                    {{ range .Sections.ByTitle }}
-                    <li>
-                        <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                    </li>
-                    {{ end }}
-                </ul>
-            </li>
-            {{ end }}
-        </ul>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                {{- range .Site.Sections.ByTitle -}}
+                    {{- if (eq (len .Sections) 0) -}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ .RelPermalink }}">{{- .Title -}}</a>
+                        </li>                        
+                    {{- else -}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{- .Title -}}
+                            </a>
+                            <ul class="dropdown-menu" data-bs-popper="static" aria-labelledby="navbarDropdown">
+                                {{- range .Sections.ByTitle -}}
+                                <li>
+                                    <a class="dropdown-item" href="{{ .RelPermalink }}">{{- .Title -}}</a>
+                                </li>
+                                {{- end -}}
+                            </ul>
+                        </li>
+                    {{- end -}}
+                {{- end -}}
+            </ul>
+        </div>
     </div>
-</div>
 </nav>
