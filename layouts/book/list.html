@@ -25,7 +25,7 @@
                 {{- div $readingTime 1440 }} days, 
             {{ end -}}
             {{- $readingTime = sub $readingTime (mul (div $readingTime 1440) 1440) -}}
-            {{ else if (ge ( $readingTime 60) -}}
+            {{ if (ge ( $readingTime 60) -}}
                 {{ div $readingTime 60 }} hours, 
             {{- end -}}
             {{- $readingTime = sub $readingTime (mul (div $readingTime 60) 60) -}}
