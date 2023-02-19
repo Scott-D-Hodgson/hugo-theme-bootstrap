@@ -4,7 +4,7 @@
 {{- end -}}
 {{- $readingTime := .ReadingTime -}}
 {{- range .Pages -}}
-    {{- $readingTime = add .ReadingTime -}}
+    {{- $readingTime = add $readingTime .ReadingTime -}}
 {{- end -}}
 <!DOCTYPE html>
 <html lang="en">
