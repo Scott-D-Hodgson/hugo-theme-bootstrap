@@ -34,7 +34,16 @@
         <h1>{{- .Title -}}</h1>
         <div class="row">
             <div class="col-12">
-            Reading time: {{ $readingTime }} minutes
+                Reading time: 
+                {{ if (ge $readingTime 1440) -}}
+                    {{- div $readingTime 1440 }} days, 
+                {{ end -}}
+                {{- $readingTime = sub $readingTime (mul (div $readingTime 1440) 1440) -}}
+                {{ if (ge $readingTime 60) -}}
+                    {{ div $readingTime 60 }} hours, 
+                {{- end -}}
+                {{- $readingTime = sub $readingTime (mul (div $readingTime 60) 60) -}}
+                {{ $readingTime }} minutes
             </div>
         </div>
         {{- .Content -}}
